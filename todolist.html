@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1> Todolist</h1>
+    <form id="form">
+        <div>
+            <input type="text" id="input" placeholder="nhập công việc mới ">
+            <button onclick="crealeJob()">thêm</button>
+        </div>
+        <div>
+            <li>
+                <span>quét nhà</span>
+                <button id="revision" > sửa </button>
+                <button id="delete" > xóa </button>
+            </li>
+            <li>
+                <span>lau nhà </span>
+                <button id="revision" > sửa </button>
+                <button id="delete" > xóa </button>
+            </li>
+        </div>
+    </form>
+        <script>
+            let revision=document.getElementById("revision")
+            let deletes =document.getElementById("delete")
+            let listjob = JSON.parse(localStorage.getItem("jobs")) || [];
+            // thêm mới công việc 
+            function crealeJob() {
+                // lấy giá trị input
+                let inputValue = $("#inputValue").value
+                console.log(inputValue);
+                // 
+                if (inputValue) {
+                    alert("tên công việc không được để trống ");
+                }else{
+                    //thiết kế đổi công việc
+                    const job={
+                        id: Math.cell(Math.random()*100000),
+                        name :inputValue,
+                        status: false,
+                    }
+                    listjob.push(job)
+                    localStorage.setItem("job")
+                }
+            }
+            $("#form").addventListener("subit", (a)=> {
+                a.preventDefault();
+                crealeJob()
+            })
+            // hiển thị danh sách công việc 
+            function render() {
+                let a = listjob.map( function(job){
+                        return
+                        <li>
+                            <span> job.name</span>
+                            <button id="revision" ></button>
+                            <button id="delete" ></button>
+                            </li>
+                        }
+                    )
+                    let ulHtml=ulHtmls.join("");
+                    console.log(ulHtml);
+                }
+            render();
+    </script>
+</body>
+</html>

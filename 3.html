@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Nhập tên cầu thủ</h1>
+        <form id="addPlayerForm">
+        <input type="text" id="playerId" placeholder="ID cầu thủ">
+        <input type="text" id="playerName" placeholder="Tên cầu thủ">
+        <button type="submit">Thêm cầu thủ</button>
+    </form>
+        <h2>Danh sách cầu thủ</h2>
+        <ul id="players"></ul>
+        <h2>Xóa cầu thủ</h2>
+        <form id="deletePlayerForm">
+            <input type="text" id="deletePlayerId" placeholder="ID cầu thủ">
+            <button type="submit">Xóa cầu thủ</button>
+    </form>
+    <script>
+        function addPlayer(id, name) {
+            let players = JSON.parse(localStorage.getItem('players')) || [];
+            players.push({ id, name });
+            localStorage.setItem('players', JSON.stringify(players));
+        }
+        function displayPlayers() {
+            let players = JSON.parse(localStorage.getItem('players')) || [];
+            let output = '';
+            players.forEach(player => {
+            output += `<li>${player.id}: ${player.name}</li>`;
+            });
+            document.getElementById('players').innerHTML = output;
+        }
+        function deletePlayer(id) {
+            let players = JSON.parse(localStorage.getItem('players')) || [];
+            players = players.filter(player => player.id !== id);
+            localStorage.setItem('players', JSON.stringify(players));
+        }
+        document.getElementById('addPlayerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            let id = document.getElementById('playerId').value;
+            let name = document.getElementById('playerName').value;
+            addPlayer(id, name);
+            document.getElementById('playerId').value = '';
+            document.getElementById('playerName').value = '';
+        });
+        document.getElementById('deletePlayerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            let id = document.getElementById('deletePlayerId').value;
+            deletePlayer(id);
+            document.getElementById('deletePlayerId').value = '';
+        });
+        window.onload = function() {
+            displayPlayers();
+        };
+    </script>
+</body>
+</html>

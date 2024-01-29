@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let user = {
+            id :1,
+            name:"Nguyễn Văn An",
+            age :21,
+        }
+        let users = [
+            {
+                id : 1,
+                name : "Nguyễn Văn An",
+                age : "21",
+            }, 
+            {
+                id :1,
+                name:"Nguyễn Văn Nam",
+                age :22,
+            },
+        ]
+        let userjs = JSON.stringify(user)
+        console.log("dữ liệu sau khi chuyển đổi ", userjs);
+        // chuyển đổi từ json sang js
+        let userjson = JSON.parse(userjs)
+        console.log("dữ liệu sau khi chuyển đổi ", userjson);
+        // chuyền dữ liệu vào local
+        localStorage.setItem("users", JSON.stringify(users))
+        // ,lấy dữ liệu ra 
+        let lisUser =localStorage.getItem("users")   
+        let lisUserParer = JSON.parse(lisUser)
+        console.log(lisUserParer);
+        // xáo dữ liệu local theo key 
+        localStorage.removeItem("user")
+        // xóa tất cả dữ liệu khỏi local
+        localStorage.clear()
+        // xây dựng ứng dụng 
+    </script>
+</body>
+</html>

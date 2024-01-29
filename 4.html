@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Local Storage Values</h1>
+    <ul id="localStorageValues"></ul>
+    <script>
+        const keys = Object.keys(localStorage);
+        const values = Object.values(localStorage);
+        const listItems = keys.map((key, index) => {
+        const li = document.createElement('li');
+        li.textContent = `${key}: ${values[index]}`;
+        return li;
+        });
+        const ul = document.getElementById('localStorageValues');
+        listItems.forEach(li => ul.appendChild(li));
+        </script>
+</body>
+</html>
